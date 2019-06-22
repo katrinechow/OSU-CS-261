@@ -1,0 +1,37 @@
+/*Assignment 2 - Part 2: Amortized Analysis*/
+
+1. O(1)+: Total of 98 cost units for 40 consecutive push operations on an empty array. Array starts out at capacity 8 and doubles.
+
+Cost flow:
+
+a) First 8 values are on O(1) = 8 cost units
+b) 9th value is O(1) + copying previous 8 values = 1 + 8 = 9 cost units
+c) Values 10 through 16 are pushed = 8 cost units.
+d) 17th value is O(1) + copying previous 16 values = 1 + 16 = 17 cost units
+e) Values 18 through 32 are pushed = 16 cost units.
+f) 33th value is O(1) + copying previous 32 values = 1 + 32 = 33 cost units
+g) At this point, the array capacity is at 64. Remaining 7 values can be pushed at O(1) = 7 cost units.
+
+Grand Total = 8 + 9 + 8 + 17 + 16 + 33 + 7 = 98 cost units.
+
+As N grows larger, the average complexity for a push is then 98 cost units / 40 = 2.45
+
+
+
+2. O(1)+: Total of 408 cost units for 40 consecutive push operations on an empty array. Array starts at capacity 8 and then increases by 2 each time the array is full.
+
+Cost flow:
+
+a) First 8 values are on O(1) = 8 cost units
+b) 9th value is O(1) + copying previous 8 values = 1 + 8 = 9 cost units
+c) 10th value is O(1) = 1 cost unit
+d) 11th value is O(1) + copying previous 10 values = 1 + 10 = 11 cost units
+e) 12th value is O(1) = 1 cost unit
+f) 13th value is O(1) = copying previous 12 values = 1 + 12 = 13 cost units
+...
+
+The pattern continues with O(1) + (O(1) + O(N)) for every other value.
+
+Grand Total = 8 + 9 + 1 + 11 + 1 + 13 + 1 + 15 + 1 + 17 + 1 + 19 + 1 + 21 + 1 + 23 + 1 + 25 + 1 + 27 + 1 + 29 + 1 + 31 + 1 + 33 + 1 + 35 + 1 + 37 + 1 + 39 + 1 = 408 cost units
+
+As N grows larger, the average complexity for a push is 408 units / 40 = 10.2
